@@ -80,9 +80,9 @@ def eliminate_words(in_list):
     out = []
     for x in in_list:
         is_not_ignored = True
-    for y in ignore_list:
-        if(x==y):
-            is_not_ignored = False
+        for y in ignore_list:
+            if(x==y):
+                is_not_ignored = False
         if(is_not_ignored):
             out.append(x)
     return out
