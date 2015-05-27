@@ -75,12 +75,12 @@ def eliminate_words(in_list):
     Using the ignore list, eliminates stop words for an input word list
     @param in_list A list of words
     @param out An output list of words sans ignored words
-    TODO: Should this also ignore all numbers and/or single letters (variables)?
-    TODO: Add s and d stemmer to combine terms (specifically nanocrystall-, propert-, magnet-, optic-, crystal-, deposit-, conduct-, boundar-, electric-)
-    TODO: Add stemmer for ignore terms (use/using/used, make/made, study/studies
+    TODO: Should this also ignore all numbers and/or single letters (variables)? This could also ignore all terms with any numbers in them to get rid of chemical compounds.
+    TODO: Add s and d stemmer to combine terms (specifically nanocrystall-, propert-, magnet-, optic-, crystal-, deposit-, conduct-, boundar-, electric-, geometric-, distribut-, modul-, oscill-, character-, spin-)
+    TODO: Add stemmer for ignore terms (use/using/used, make/made, study/studies, imply/implied
     Question: Is there some list of common words that already exists? I don't want to eliminate ALL common words... but prepositions, definitely.
     """
-    ignore_list=['_', 'a', 'able', 'about', 'across', 'after', 'all', 'almost', 'also', 'am', 'among', 'an', 'and', 'any', 'are', 'as', 'at', 'be', 'because', 'been', 'between', 'but', 'by', 'can', 'cannot', 'could', 'did', 'do', 'does', 'during', 'either', 'else', 'ever', 'every', 'experiment', 'for', 'from', 'get', 'got', 'had', 'has', 'have', 'how', 'however', 'if', 'in', 'is', 'it','its', 'just', 'least', 'may', 'measure', 'method', 'might', 'most', 'must', 'neither', 'nor', 'not', 'of', 'off', 'often', 'on', 'one', 'only', 'or', 'other', 'our', 'over', 'own', 'process', 'should', 'since', 'so', 'some', 'such', 'technique', 'than', 'that', 'the', 'their', 'these', 'this', 'to', 'two', 'three', 'up', 'using', 'various', 'very', 'via', 'was', 'we', 'were', 'what', 'when', 'where', 'which', 'while', 'why', 'will', 'with']
+    ignore_list=['_', 'a', 'able', 'about', 'across', 'after', 'all', 'almost', 'also', 'am', 'among', 'an', 'and', 'any', 'are', 'as', 'at', 'be', 'because', 'been', 'between', 'but', 'by', 'can', 'cannot', 'could', 'did', 'do', 'does', 'during', 'either', 'else', 'ever', 'every', 'experiment', 'for', 'from', 'get', 'got', 'had', 'has', 'have', 'how', 'however', 'if', 'in', 'is', 'it','its', 'just', 'least', 'may', 'measure', 'method', 'might', 'most', 'must', 'neither', 'never', 'nor', 'not', 'of', 'off', 'often', 'on', 'one', 'only', 'or', 'other', 'our', 'over', 'own', 'process', 'should', 'since', 'so', 'some', 'such', 'technique', 'than', 'that', 'the', 'their', 'these', 'this', 'to', 'two', 'three', 'up', 'using', 'various', 'very', 'via', 'was', 'we', 'were', 'what', 'when', 'where', 'which', 'while', 'why', 'will', 'with']
     #See for a basic list of English stopwords: http://www.textfixer.com/resources/common-english-words.txt
     out = []
     for x in in_list:
