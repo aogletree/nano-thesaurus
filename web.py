@@ -120,13 +120,14 @@ def main():
         #Strips the whitespace off 
         #TODO: This also needs to be modified to do punctuation
         word_list = re.findall(r"[\w']+", ab)
+        word_list = [x.lower() for x in word_list]
         
         #Eliminate words. Seriously, this needs an object model
         word_list = eliminate_words(word_list)
         
         #Modify the dictionary, note that I use a try/except statement to test the dictionary for entries that may/may-not exist
         for word in word_list:
-            lowercase = word.lower()
+            #lowercase = word.lower()
             try:
                 #Update the count
                 count = word_dict[lowercase]
