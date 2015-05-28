@@ -92,17 +92,17 @@ def eliminate_words(in_list):
             out.append(x)
             
     # filter a second time
-    out2=[]
-    base_ignore_words=['magnet','propert']
-    for i in out:
-        is_not_ignored=True
-        for j in base_ignore_words:
-            if (j in i):
-                is_not_ignored= False
-        if(is_not_ignored):
-            out2.append(i)
+    # out2=[]
+    # base_ignore_words=['magnet','propert']
+    # for i in out:
+        # is_not_ignored=True
+        # for j in base_ignore_words:
+            # if (j in i):
+                # is_not_ignored= False
+        # if(is_not_ignored):
+            # out2.append(i)
         #check to see if the word is derivative of another
-    return out2
+    # return out2
 
 def main():
     """
