@@ -1,16 +1,16 @@
 """
 Web Scraper 
 
-This is a module that visits a fairly specific website, downloads all the paper abstracts it finds, and outputs a file 
+This is a module that visits a specific website, downloads all the paper abstracts it finds, and outputs a file 
 with the word count of all meaningful words.
 
-TODO: This can also be done in an object model
+Note: This can also be done in an object model
 """
 
 
-import mechanize   #For the 
-import operator    #For soring the word dictionary
-import re          #For treating input tokens
+import mechanize   #Emulates a browser to interact with web pages
+import operator    #For sorting the words
+import re          #Regular expression operations
 
 def setup():
     """
@@ -21,9 +21,9 @@ def setup():
     @return a mechanize browser without the mess of setting it up
     """
     br = mechanize.Browser()
-    #br.set_all_readonly(False)    # allow everything to be written to
-    br.set_handle_robots(False)   # no robots
-    br.set_handle_refresh(False)  # can sometimes hang without this
+    br.set_all_readonly(False)    #Allows everything to be written to
+    br.set_handle_robots(False)   #Ignore robots
+    br.set_handle_refresh(False)  #Can sometimes hang without this
     br.addheaders = [('User-agent', 'Firefox (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')]
     # [('User-agent', 'Firefox')]
     return br
@@ -32,9 +32,10 @@ def setup():
 def getAbstractList(b):
     """
     @function getAbstractList
-    Takes an input browser and navigates it to all of the links that look like an abstract, and navigates to them, pulls the abstract out, and navigates back
+    Takes an input browser and navigates it to all of the links that look like an abstract, pulls the abstract out, and navigates back
     @param b A Mechanize browser
     @return Returns a list of links, texts and abstracts
+    
     TODO: Put the interior list into a tuple
     """
     print "\tGetting Abstracts From: ",b.geturl() 
