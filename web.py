@@ -21,7 +21,6 @@ def setup():
     @return a mechanize browser without the mess of setting it up
     """
     br = mechanize.Browser()
-    br.set_all_readonly(False)    #Allows everything to be written to
     br.set_handle_robots(False)   #Ignore robots
     br.set_handle_refresh(False)  #Can sometimes hang without this
     br.addheaders = [('User-agent', 'Firefox (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')]
@@ -35,7 +34,7 @@ def getAbstractList(b):
     Takes an input browser and navigates it to all of the links that look like an abstract, pulls the abstract out, and navigates back
     @param b A Mechanize browser
     @return Returns a list of links, texts and abstracts
-    
+
     TODO: Put the interior list into a tuple
     """
     print "\tGetting Abstracts From: ",b.geturl() 
