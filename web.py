@@ -90,6 +90,7 @@ def eliminate_words(in_list):
                 is_not_ignored = False
         if(is_not_ignored):
             out.append(x)
+    return out
             
     # filter a second time
     # out2=[]
@@ -139,7 +140,7 @@ def main():
         
         #Modify the dictionary, note that I use a try/except statement to test the dictionary for entries that may/may-not exist
         for word in word_list:
-            #lowercase = word.lower()
+            lowercase = word.lower()
             try:
                 #Update the count
                 count = word_dict[lowercase]
