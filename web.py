@@ -27,7 +27,6 @@ def setup():
     # [('User-agent', 'Firefox')]
     return br
 
-
 def getAbstractList(b):
     """
     @function getAbstractList
@@ -75,10 +74,9 @@ def eliminate_words(in_list):
     Using the ignore list, eliminates stop words for an input word list
     @param in_list A list of words
     @param out An output list of words sans ignored words
-    TODO: Should this also ignore all numbers and/or single letters (variables)? This could also ignore all terms with any numbers in them to get rid of chemical compounds.
+
     TODO: Add s and d stemmer to combine terms (specifically nanocrystall-, propert-, magnet-, optic-, crystal-, deposit-, conduct-, boundar-, electric-, geometric-, distribut-, modul-, oscill-, character-, spin-)
     TODO: Add stemmer for ignore terms (use/using/used, make/made, study/studies, imply/implied
-    Question: Is there some list of common words that already exists? I don't want to eliminate ALL common words... but prepositions, definitely.
     """
     ignore_list=['_', 'a', 'able', 'about', 'across', 'after', 'all', 'almost', 'also', 'am', 'among', 'an', 'and', 'any', 'are', 'as', 'at', 'be', 'because', 'been', 'between', 'but', 'by', 'can', 'cannot', 'could', 'did', 'do', 'does', 'during', 'either', 'else', 'ever', 'every', 'experiment', 'for', 'from', 'get', 'got', 'had', 'has', 'have', 'how', 'however', 'if', 'in', 'is', 'it','its', 'just', 'least', 'may', 'measure', 'method', 'might', 'most', 'must', 'neither', 'never', 'nor', 'not', 'of', 'off', 'often', 'on', 'one', 'only', 'or', 'other', 'our', 'over', 'own', 'process', 'should', 'since', 'so', 'some', 'such', 'technique', 'than', 'that', 'the', 'their', 'these', 'this', 'to', 'two', 'three', 'up', 'using', 'various', 'very', 'via', 'was', 'we', 'were', 'what', 'when', 'where', 'which', 'while', 'why', 'will', 'with']
     #See for a basic list of English stopwords: http://www.textfixer.com/resources/common-english-words.txt
@@ -91,24 +89,12 @@ def eliminate_words(in_list):
         if(is_not_ignored):
             out.append(x)
     return out
-            
-    # filter a second time
-    # out2=[]
-    # base_ignore_words=['magnet','propert']
-    # for i in out:
-        # is_not_ignored=True
-        # for j in base_ignore_words:
-            # if (j in i):
-                # is_not_ignored= False
-        # if(is_not_ignored):
-            # out2.append(i)
-        #check to see if the word is derivative of another
-    # return out2
 
 def main():
     """
     @function main
-    See module doc. This is a mess
+
+    TODO: create separate function for regex
     """
     br = setup()
     response = br.open("http://arxiv.org/find/all/1/all:+nanocrystalline/0/1/0/all/0/1")
@@ -125,16 +111,24 @@ def main():
 
     #Create a dictionary of {word, word_count}
     word_dict={}
+
     for i in output_list:
         
         #This gets the abstract out of each entry
         ab = i[2]
-        
+
         #Strips the whitespace off 
-        #TODO: This also needs to be modified to do punctuation
         word_list = re.findall(r"[\w']+", ab)
+
+        #Matches any single character not in brackets
+        #word_list = re.findall(r"[^...]", ab)
+
+        #Matches any decimal digit
+        word_list = re.findall(r"[\D]", ab)
+
+        #Lowercases terms
         word_list = [x.lower() for x in word_list]
-        
+
         #Eliminate words. Seriously, this needs an object model
         word_list = eliminate_words(word_list)
         
