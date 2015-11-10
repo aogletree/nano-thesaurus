@@ -9,7 +9,6 @@ Note: This can also be done in an object model
 
 
 #import mechanize   #Emulates a browser to interact with web pages
-import request
 import urllib.request #Need to use urllib module instead of mechanize 
 import urllib.error
 import operator    #For sorting the words
