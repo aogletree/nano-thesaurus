@@ -20,7 +20,6 @@ from bs4 import BeautifulSoup
 import matplotlib.pylab as plt
 import pandas as pd
 import numpy as np
-import bibtexparser
 
 pd.set_option('mode.chained_assignment','warn')
 
@@ -44,7 +43,7 @@ pd.set_option('mode.chained_assignment','warn')
 OAI = "{http://www.openarchives.org/OAI/2.0/}"
 ARXIV = "{http://export.arxiv.org/oai2}"
 
-def harvest(arxiv="physics:cond-mat"):
+def harvest(arxiv="physics:cond-mat.mtrl-sci"):
     df = pd.DataFrame(columns=("title", "abstract", "categories", "created", "id", "doi"))
     base_url = "http://export.arxiv.org/oai2?verb=ListRecords&"
     url = (base_url +
