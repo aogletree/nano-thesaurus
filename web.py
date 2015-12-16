@@ -5,17 +5,10 @@ This is a module that visits the arXiv website, downloads all the paper abstract
 with the word count of all meaningful words.
 """
 
-<<<<<<< HEAD
-import mechanize   #Emulates a browser to interact with web pages
-import operator    #For sorting the words
-import re          #Regular expression operations
-=======
-
 #import mechanize #Emulates a browser to interact with web pages
 import urllib2 #Need to use urllib module instead of mechanize 
 import operator #For sorting the words
 import re #Regular expression operations
->>>>>>> origin/master
 import time
 import datetime
 from itertools import ifilter
@@ -29,16 +22,16 @@ import numpy as np
 
 pd.set_option('mode.chained_assignment','warn')
 
-#%matplotlib inline
-
 OAI = "{http://www.openarchives.org/OAI/2.0/}"
-ARXIV = "{http://export.arxiv.org/oai2}"
 
-def harvest(arxiv="physics:cond-mat.mtrl-sci"):
+#Double check the below URL may change
+ARXIV = "{http://arxiv.org/OAI/arXiv/}"
+
+def harvest(arxiv="physics:cond-mat"):
     df = pd.DataFrame(columns=("title", "abstract", "categories", "created", "id", "doi"))
     base_url = "http://export.arxiv.org/oai2?verb=ListRecords&"
     url = (base_url +
-           "from=2010-01-01&until=2014-12-31&" +
+           "from=2014-06-01&until=2014-12-31&" +
            "metadataPrefix=arXiv&set=%s"%arxiv)
     
     while True:
@@ -99,6 +92,8 @@ def harvest(arxiv="physics:cond-mat.mtrl-sci"):
     return df
 
 df = harvest()
+
+df.head()
 
 #Store the data locally so we don't have to scrape it again
 
