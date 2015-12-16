@@ -1,15 +1,22 @@
 """
 Web Scraper 
 
-This is a module that visits a specific website, downloads all the paper abstracts it finds, and outputs a file 
+This is a module that visits the arXiv website, downloads all the paper abstracts it finds, and outputs a file 
 with the word count of all meaningful words.
 """
 
+<<<<<<< HEAD
 import mechanize   #Emulates a browser to interact with web pages
 import operator    #For sorting the words
 import re          #Regular expression operations
+=======
+
+#import mechanize #Emulates a browser to interact with web pages
+import urllib2 #Need to use urllib module instead of mechanize 
+import operator #For sorting the words
+import re #Regular expression operations
+>>>>>>> origin/master
 import time
-import urllib2
 import datetime
 from itertools import ifilter
 from collections import Counter, defaultdict
@@ -19,16 +26,15 @@ from bs4 import BeautifulSoup
 import matplotlib.pylab as plt
 import pandas as pd
 import numpy as np
-import bibtexparser
 
 pd.set_option('mode.chained_assignment','warn')
 
-%matplotlib inline
+#%matplotlib inline
 
 OAI = "{http://www.openarchives.org/OAI/2.0/}"
-ARXIV = "{http://arxiv.org/OAI/arXiv/}"
+ARXIV = "{http://export.arxiv.org/oai2}"
 
-def harvest(arxiv="physics:cond-mat"):
+def harvest(arxiv="physics:cond-mat.mtrl-sci"):
     df = pd.DataFrame(columns=("title", "abstract", "categories", "created", "id", "doi"))
     base_url = "http://export.arxiv.org/oai2?verb=ListRecords&"
     url = (base_url +
